@@ -3,6 +3,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.Window;
+import java.awt.image.ColorModel;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,6 +14,9 @@ public class Main {
         Label label = new Label("Arthur viado");
         Button button = new Button("Ele é mesmo?");
         frame.setLayout(new FlowLayout());
+        BufferedImage imagem = new BufferedImage(500,500,2);
+
+        window.add(imagem);
 
         label.setAlignment(Label.CENTER);
 
@@ -29,7 +36,7 @@ public class Main {
             public void mouseReleased(MouseEvent e) {}
             @Override
             public void mouseEntered(MouseEvent e) {
-                button.setBounds((int) (Math.random() * frame.getX()),(int)(Math.random()* frame.getY()), 100,100);
+                button.setBounds(e.getX() + button.getX(),e.getY()+button.getY(), 100,100);
             }
             @Override
             public void mouseExited(MouseEvent e) {}
